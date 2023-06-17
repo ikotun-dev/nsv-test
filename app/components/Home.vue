@@ -1,41 +1,58 @@
-<template>
-    <Page>
-        <ActionBar>
-            <Label text="Home"/>
-        </ActionBar>
 
-        <GridLayout>
-            <Label class="info">
-                <FormattedString>
-                    <Span class="fas" text.decode="&#xf135; "/>
-                    <Span :text="message"/>
-                </FormattedString>
-            </Label>
-        </GridLayout>
-    </Page>
+<template>
+  <Page>
+    <ActionBar title="Form Example" />
+    <StackLayout class="form-container">
+      <Label text="Name" class="label" />
+      <TextField v-model="name" class="input" />
+
+      <Label text="Email" class="label" />
+      <TextField v-model="email" class="input" keyboardType="email" />
+
+      <Button text="Submit" @tap="submitForm" class="submit-btn" />
+    </StackLayout>
+  </Page>
 </template>
 
 <script>
-  export default {
-    computed: {
-      message() {
-        return "Blank {N}-Vue app";
-      }
-    }
-  };
+export default {
+  data() {
+    return {
+      name: '',
+      email: '',
+    };
+  },
+  methods: {
+    submitForm() {
+      // Perform form validation and submit logic here
+      console.log('Submitted!');
+      console.log('Name:', this.name);
+      console.log('Email:', this.email);
+    },
+  },
+};
 </script>
 
-<style scoped lang="scss">
-    @import '@nativescript/theme/scss/variables/blue';
+<style scoped>
+.form-container {
+  padding: 20px;
+}
 
-    // Custom styles
-    .fas {
-        @include colorize($color: accent);
-    }
+.label {
+  font-size: 18px;
+  margin-bottom: 5px;
+}
 
-    .info {
-        font-size: 20;
-        horizontal-align: center;
-        vertical-align: center;
-    }
+.input {
+  height: 40px;
+  padding: 5px;
+  border-width: 1px;
+  border-color: gray;
+  margin-bottom: 15px;
+}
+
+.submit-btn {
+  margin-top: 20px;
+  height: 40px;
+}
 </style>
